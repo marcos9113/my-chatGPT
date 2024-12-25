@@ -37,7 +37,19 @@ function sendMessage() {
 function displayMessage(type, message) {
     const messageElement = document.createElement('div');
     messageElement.classList.add(type === 'user' ? 'user-message' : 'bot-message');
-    messageElement.textContent = message;
+
+    // Convert Markdown to HTML using the marked library (use parse() for v4.x)
+    if (type === 'bot') {
+        let htmlContent = marked.parse(message);  // Correct usage of marked for v4.x
+        
+        // Optionally sanitize the HTML to prevent XSS
+        htmlContent = DOMPurify.sanitize(htmlContent);
+        
+        messageElement.innerHTML = htmlContent;
+    } else {
+        messageElement.textContent = message;  // Regular text for user
+    }
+
     chatWindow.appendChild(messageElement);
     chatWindow.scrollTop = chatWindow.scrollHeight;
 }

@@ -1,80 +1,114 @@
 /* General Body Styles */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa; /* Light background for chat */
-    color: #343a40;
-}
-
-/* Login Page Styles */
-.bg-dark {
-    background-color: #343a40 !important; /* Dark background for login */
-}
-
-.card {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #121212; /* Dark background for cyber security theme */
+    color: white; /* White text color */
+    margin: 0;
+    padding: 0;
 }
 
 /* Chat Interface Styles */
 .chat-container {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 15px;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #1e1e1e; /* Darker background for the chat container */
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    height: 80vh; /* Larger chat box area */
+    max-width: 800px; /* Limit max width for large screens */
+    margin: 50px auto; /* Center the chat */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .chat-window {
-    height: 400px;
+    height: 70vh; /* Larger conversation area */
     overflow-y: auto;
-    margin-bottom: 10px;
-    padding: 10px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #333; /* Border for chat window */
+    border-radius: 10px;
+    background-color: #1c1c1c; /* Dark background for chat */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.7);
 }
 
 .user-message {
-    background-color: #DCF8C6; /* Light green for user messages */
+    background-color: #00ff00; /* Neon green for user messages */
     padding: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     border-radius: 5px;
     max-width: 80%;
     align-self: flex-end;
     word-wrap: break-word;
+    font-size: 16px;
+    color: black;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .bot-message {
-    background-color: #ECECEC; /* Light grey for bot messages */
+    background-color: #007bff; /* Cyber blue for bot messages */
     padding: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     border-radius: 5px;
     max-width: 80%;
     align-self: flex-start;
     word-wrap: break-word;
+    font-size: 16px;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .input-group {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
 }
 
-.custom-file-label {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+#chatInput {
+    border-radius: 15px; /* Rounded input field */
+    padding-left: 15px;
+    font-size: 16px;
+    border: 1px solid #444; /* Dark border */
+    width: 80%; /* Adjust width */
+    background-color: #2a2a2a; /* Dark input box */
+    color: white;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .chat-window {
-        height: 300px;
-    }
+#sendButton {
+    background-color: #28a745; /* Green button for send */
+    color: white;
+    border-radius: 50%; /* Circle button */
+    border: none;
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* Additional Customization */
-.btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
+#sendButton:hover {
+    background-color: #218838; /* Darker green when hovered */
+    transform: scale(1.1);
 }
 
-.btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
+/* Floating Send Button */
+#sendButton {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    padding: 20px;
+    border-radius: 50%;
+    font-size: 18px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#sendButton:hover {
+    background-color: #0066cc;
+    transform: scale(1.1);
+}
+
+/* Background Effect for Cybersecurity */
+body {
+    background-image: url('https://www.transparenttextures.com/patterns/asfalt-dark.png'); /* Subtle grid pattern */
+    background-size: cover;
+    background-attachment: fixed;
 }

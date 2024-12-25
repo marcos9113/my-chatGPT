@@ -1,36 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat Interface</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/styles.css">
-</head>
-<body>
-    <div class="container mt-3">
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                <div class="chat-container">
-                    <div id="chatWindow" class="chat-window">
-                        </div>
-                    <div class="input-group mb-3">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="fileUpload">
-                            <label class="custom-file-label" for="fileUpload">Choose file</label>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <input type="text" id="chatInput" class="form-control" placeholder="Type your message...">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button" id="sendButton">Send</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="/js/script.js"></script>
-</body>
-</html>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Interface</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked@4.0.12/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.6/purify.min.js"></script>
+  <style>
+    body {
+      background-color: #222;
+      color: #eee;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
 
+    .chat-window {
+      width: 95%;
+      max-width: 900px;
+      height: 700px;
+      overflow-y: scroll;
+      background-color: #333;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px solid #555;
+    }
+
+    .user-message,
+    .bot-message {
+      display: flex;
+      margin-bottom: 10px;
+    }
+
+    .user-message {
+      justify-content: flex-end;
+    }
+
+    .user-message .message,
+    .bot-message .message {
+      background-color: #555;
+      color: #eee;
+      padding: 10px 15px;
+      border-radius: 20px;
+      max-width: 70%;
+      position: relative; 
+    }
+
+    .user-message .message {
+      background-color: #007bff;
+      border-top-left-radius: 5px; 
+    }
+
+    .user-message .message::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      right: -10px;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-left: 10px solid #007bff;
+    }
+
+    .bot-message .message {
+      background-color: #555;
+      border-top-right-radius: 5px; 
+    }
+
+    .bot-message .message::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: -10px;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-right: 10px solid #555;
+    }
+
+    .message p { 
+      margin: 0; 
+      white-space: pre-wrap; 
+      /* Add this to prevent long words from breaking out */
+      overflow-wrap: break-word; 
+    }
+
+    .input-group {
+      width: 95%;
+      max-width: 900px;
+      display: flex;
+    }
+
+    #chatInput {
+      background-color: transparent;
+      border: 2px solid #555;
+      color: #eee;
+      padding: 15px;
+      font-size: 18px;
+      border-radius: 30px;
+      flex-grow: 1;
+      margin-right: 10px;
+    }
+
+    #chatInput::placeholder {
+      color: #aaa;
+    }
+
+    #sendButton {
+      background-color: #007bff;
+      border-color: #007bff;
+      padding: 15px 25px;
+      font-size: 18px;
+      border-radius: 30px;
+      white-space: nowrap;
+    }
+
+    .custom-file-label {
+      border-radius: 25px;
+    }
+
+    .custom-file-input:lang(en)~.custom-file-label::after {
+      content: "Browse";
+    }
+  </style>
+</head>
+
+<body>
+  <div id="chatWindow" class="chat-window"></div>
+
+  <div class="input-group mb-3">
+    <div class="custom-file">
+      <input type="file" class="custom-file-input" id="fileUpload">
+      <label class="custom-file-label" for="fileUpload">Choose file</label>
+    </div>
+  </div>
+
+  <div class="input-group">
+    <input type="text" id="chatInput" class="form-control" placeholder="Type your message...">
+    <button class="btn btn-primary" type="button" id="sendButton">Send</button>
+  </div>
+
+  <script src="/js/script.js"></script>
+</body>
+
+</html>
